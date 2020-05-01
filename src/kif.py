@@ -6,6 +6,7 @@ Created on Sun Apr 19 18:01:29 2020
 """
 
 import requests
+import re
 import bs4
 import pandas as pd
 
@@ -58,7 +59,12 @@ for idx, t in enumerate(tables):
     for tr in rows:        
         row = tr.find_all("td")
         rowData = []
-        for rd in row:
-            rowData.append(parseContentsStr(rd))
+        for jdx, rd in enumerate(row):
+            if columnNames[jdx] == 'Koordinate':
+                # here we actually extract the coordinates from the html.
+                 m = re.search("params=(\d{1,3}\.\d*)_(\w)_(\d{1,3}\.\d*)_(\w)_", str(rd))
+                rowData.append(parseContentsStr(rd))
+            else:
+                rowData.append(parseContentsStr(rd))
         df[idx].loc[len(df[idx])] = rowData
 
