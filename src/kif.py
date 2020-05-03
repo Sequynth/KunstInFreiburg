@@ -62,7 +62,7 @@ for idx, t in enumerate(tables):
         for jdx, rd in enumerate(row):
             if columnNames[jdx] == 'Koordinate':
                 # here we actually extract the coordinates from the html.
-                 m = re.search("params=(\d{1,3}\.\d*)_(\w)_(\d{1,3}\.\d*)_(\w)_", str(rd))
+                m = re.search("params=(\d{1,3}\.\d*)_(\w)_(\d{1,3}\.\d*)_(\w)_", str(rd))
                 rowData.append(parseContentsStr(rd))
             else:
                 rowData.append(parseContentsStr(rd))
