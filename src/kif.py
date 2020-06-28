@@ -18,7 +18,7 @@ def parseContentsStr(element):
     return content.rstrip()
     
 
-html_source = requests.get('https://de.wikipedia.org/wiki/Liste_von_Kunstwerken_im_%C3%B6ffentlichen_Raum_in_Freiburg_im_Breisgau').text
+html_source = requests.get('https://de.wikipedia.org/w/index.php?title=Liste_von_Kunstwerken_im_%C3%B6ffentlichen_Raum_in_Freiburg_im_Breisgau&stable=0&redirect=no').text
 
 # html_source = html_source[:18000]
 
@@ -37,7 +37,8 @@ for hh in headers:
 # get all the tables on the page
 tables = soup.find_all("table", "wikitable")
 
-# drop the last table, I dont know where it comes from...
+# drop the last table, it only contains unsorted sculptures, mostly without GPS
+# coordinates ...
 tables = tables[:-1]
 
 df = []
